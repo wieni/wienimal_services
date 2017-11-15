@@ -1,0 +1,14 @@
+{
+    "name": "wieni/wienimal_services",
+    "description": "Provides services for the Wienimal theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dieter Holvoet",
+            "email": "dieter@wieni.be"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "type": "drupal-module"
+}
