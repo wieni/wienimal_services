@@ -1,0 +1,5 @@
+name: wienimal_services
+type: module
+description: Provides services for the Wienimal theme
+core: 8.x
+package: Wieni

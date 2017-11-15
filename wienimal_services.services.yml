@@ -1,0 +1,46 @@
+services:
+    wienimal_services.title_service:
+        class: Drupal\wienimal_services\Service\TitleService
+        arguments:
+            - '@current_route_match'
+            - '@eck.entity_type.bundle.info'
+            - '@request_stack'
+            - '@wienimal_services.content_type_info_service'
+
+    wienimal_services.maxlength_service:
+        class: Drupal\wienimal_services\Service\MaxLengthService
+
+    wienimal_services.toolbar_service:
+        class: Drupal\wienimal_services\Service\ToolbarService
+        arguments:
+            - '@config.factory'
+
+    wienimal_services.cancel_button_service:
+        class: Drupal\wienimal_services\Service\CancelButtonService
+        arguments:
+            - '@current_route_match'
+            - '@config.factory'
+            - '@request_stack'
+
+    wienimal_services.content_type_info_service:
+        class: Drupal\wienimal_services\Service\ContentTypeInfoService
+        arguments:
+            - '@current_route_match'
+            - '@eck.entity_type.bundle.info'
+            - '@entity_type.manager'
+            - '@request_stack'
+            - '@wienimal_services.content_source.node'
+            - '@wienimal_services.content_source.taxonomy_term'
+            - '@wienimal_services.content_source.eck'
+
+
+    wienimal_services.content_source.node:
+        class: Drupal\wienimal_services\Service\ContentSource\NodeContentSource
+
+    wienimal_services.content_source.taxonomy_term:
+        class: Drupal\wienimal_services\Service\ContentSource\TaxonomyTermContentSource
+
+    wienimal_services.content_source.eck:
+        class: Drupal\wienimal_services\Service\ContentSource\EckEntityContentSource
+        arguments:
+            - '@eck.entity_type.bundle.info'
