@@ -9,4 +9,4 @@ Wienimal Services
 [![Total Downloads](https://poser.pugx.org/wieni/wienimal_services/downloads)](https://packagist.org/packages/wieni/wienimal)
 [![License](https://poser.pugx.org/wieni/wienimal_services/license)](https://packagist.org/packages/wieni/wienimal)
 
-A collection of helper services for the [Wienimal](https://github.com/wieni/wienimal) Drupal 8 administration theme.
+> A collection of helper services for the [Wienimal](https://github.com/wieni/wienimal) Drupal 8 administration theme.
