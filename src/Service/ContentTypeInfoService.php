@@ -86,7 +86,6 @@ class ContentTypeInfoService
             case 'entity.entity_form_display.node.default':
             case 'entity.entity_view_display.node.default':
             case 'node.add':
-            case 'system.admin_content':
                 return $this->getContentId('node');
 
             case 'entity.taxonomy_term.add_form':
