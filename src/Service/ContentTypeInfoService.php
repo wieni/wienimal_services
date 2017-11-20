@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\eck\EckEntityTypeBundleInfo;
 use Drupal\eck\Entity\EckEntityType;
+use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\wienimal_services\Service\ContentSource\EckEntityContentSource;
@@ -82,6 +83,7 @@ class ContentTypeInfoService
 
         switch ($routeName) {
             case 'entity.node_type.edit_form':
+            case 'entity.node.edit_form':
             case 'entity.node.field_ui_fields':
             case 'entity.entity_form_display.node.default':
             case 'entity.entity_view_display.node.default':
@@ -222,6 +224,15 @@ class ContentTypeInfoService
         $nodeTypeFromRequest = $this->request->get('type');
         $bundles = $this->entityTypeBundleInfo->getBundleInfo('node');
         $result = [];
+
+        /** @var Node $node */
+        if ($node = $this->currentRouteMatch->getParameter('node')) {
+            $entity = NodeType::load($node->getType());
+            return [
+                'type' => $entity->get('type'),
+                'typeTitle' => $entity->get('name')
+            ];
+        }
 
         if (
             $this->currentRouteMatch->getRouteName() === 'system.admin_content'
