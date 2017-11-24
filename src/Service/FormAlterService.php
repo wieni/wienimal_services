@@ -2,7 +2,6 @@
 
 namespace Drupal\wienimal_services\Service;
 
-use Drupal\Console\Bootstrap\Drupal;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
@@ -108,10 +107,25 @@ class FormAlterService
 
         /** @var CurrentRouteMatch $currentRouteMatch */
         $currentRouteMatch = \Drupal::service('current_route_match');
-        $routeName = $currentRouteMatch->getRouteName();
-        $routeParams = $currentRouteMatch->getRawParameters()->all();
 
-        $form_state->setRedirect($routeName, $routeParams, $options);
+        switch ($currentRouteMatch->getRouteName()) {
+            case 'node.add':
+            case 'entity.node.edit_form':
+                $form_state->setRedirect(
+                    'entity.node.edit_form',
+                    ['node' => $entity->id()],
+                    $options
+                );
+                break;
+            case 'entity.taxonomy_term.add_form':
+            case 'entity.taxonomy_term.edit_form':
+                $form_state->setRedirect(
+                    'entity.taxonomy_term.edit_form',
+                    ['taxonomy_term' => $entity->id()],
+                    $options
+                );
+                break;
+        }
     }
 
     /**
