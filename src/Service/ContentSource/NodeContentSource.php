@@ -26,10 +26,10 @@ class NodeContentSource extends AbstractContentSource
                 $type = $nodeType->get('type');
                 $id = sprintf('node-%s', $type);
                 return [
-                    'id' => $id,
-                    'type' => $type,
-                    'title' => new TranslatableMarkup($nodeType->get('name')),
-                ] + $basePluginDefinition;
+                        'id' => $id,
+                        'type' => $type,
+                        'title' => new TranslatableMarkup($nodeType->get('name')),
+                    ] + $basePluginDefinition;
             },
             $this->getTypes($config)
         );
@@ -129,6 +129,6 @@ class NodeContentSource extends AbstractContentSource
             );
         }
 
-        return 'node';
+        return '';
     }
 }

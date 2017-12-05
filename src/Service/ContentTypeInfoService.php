@@ -12,6 +12,7 @@ use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\wienimal_services\Service\ContentSource\EckEntityContentSource;
 use Drupal\wienimal_services\Service\ContentSource\NodeContentSource;
 use Drupal\wienimal_services\Service\ContentSource\TaxonomyTermContentSource;
+use Drupal\wmcustom\Entity\TaxonomyTerm\TermModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -81,6 +82,13 @@ class ContentTypeInfoService
             }
         }
 
+        if (
+            $routeName === 'system.admin_content'
+            && $id = $this->getContentId('node')
+        ) {
+            return $id;
+        }
+
         switch ($routeName) {
             case 'entity.node_type.edit_form':
             case 'entity.node.edit_form':
@@ -91,6 +99,7 @@ class ContentTypeInfoService
                 return $this->getContentId('node');
 
             case 'entity.taxonomy_term.add_form':
+            case 'entity.taxonomy_term.edit_form':
             case 'entity.taxonomy_term.field_ui_fields':
             case 'entity.entity_form_display.taxonomy_term.default':
             case 'entity.entity_view_display.taxonomy_term.default':
@@ -208,9 +217,27 @@ class ContentTypeInfoService
         /** @var Vocabulary $vocabulary */
         $vocabulary = $this->currentRouteMatch->getParameter('taxonomy_vocabulary');
 
+        /** @var TermModel $taxonomyTerm */
+        $taxonomyTerm = $this->currentRouteMatch->getParameter('taxonomy_term');
+        if ($taxonomyTerm) {
+            $vocabulary = Vocabulary::load($taxonomyTerm->getVocabularyId());
+        }
+
+        if (!$vocabulary) {
+            return [];
+        }
+
+        if (!$taxonomyTerm) {
+            return [
+                'vocabulary' => $vocabulary->get('vid'),
+                'title' => $vocabulary->get('name'),
+            ];
+        }
+
         return [
             'vocabulary' => $vocabulary->get('vid'),
-            'title' => $vocabulary->get('name')
+            'title' => $vocabulary->get('name'),
+            'term' => $taxonomyTerm->label(),
         ];
     }
 

@@ -80,6 +80,8 @@ class TitleService
             /* Taxonomy */
             case 'entity.taxonomy_term.add_form':
                 return $this->getTaxonomyTermCreateTitle();
+            case 'entity.taxonomy_term.edit_form':
+                return $this->getTaxonomyTermEditTitle();
             case 'entity.taxonomy_term.field_ui_fields':
                 return $this->getTaxonomyTermFieldUITitle();
             case 'entity.entity_form_display.taxonomy_term.default':
@@ -178,6 +180,18 @@ class TitleService
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Add %vocabulary', ['%vocabulary' => $info['title']]);
+    }
+
+    /**
+     * @return TranslatableMarkup
+     */
+    public function getTaxonomyTermEditTitle()
+    {
+        $info = $this->contentTypeInfoService->getInfo('taxonomy');
+        return $this->t('Edit @vocabulary %term', [
+            '@vocabulary' => $info['title'],
+            '%term' => $info['term'],
+        ]);
     }
 
     /**
