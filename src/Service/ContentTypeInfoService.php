@@ -257,7 +257,8 @@ class ContentTypeInfoService
             $entity = NodeType::load($node->getType());
             return [
                 'type' => $entity->get('type'),
-                'typeTitle' => $entity->get('name')
+                'typeTitle' => $entity->get('name'),
+                'nodeTitle' => $node->label()
             ];
         }
 

@@ -74,6 +74,8 @@ class TitleService
                 return $this->getNodeDisplayTitle();
             case 'node.add':
                 return $this->getNodeCreateTitle();
+            case 'entity.node.edit_form':
+                return $this->getNodeEditTitle();
             case 'system.admin_content':
                 return $this->getNodeOverviewTitle();
 
@@ -155,6 +157,32 @@ class TitleService
         }
 
         return $this->t('Add %nodeType', ['%nodeType' => $info['typeTitle']]);
+    }
+
+    /**
+     * @return TranslatableMarkup
+     */
+    public function getNodeEditTitle()
+    {
+        $info = $this->contentTypeInfoService->getInfo('node');
+
+        if (isset($info['subType'])) {
+            return $this->t('Edit %nodeType (@subType)', [
+                '%nodeType' => $info['typeTitle'],
+                '@subType' => $info['subTypeTitle']
+            ]);
+        }
+
+        if (isset($info['nodeTitle'])) {
+            return $this->t('Edit @nodeType %nodeTitle', [
+                '@nodeType' => $info['typeTitle'],
+                '%nodeTitle' => $info['nodeTitle'],
+            ]);
+        }
+
+        return $this->t('Edit @nodeType', [
+            '@nodeType' => $info['typeTitle'],
+        ]);
     }
 
     /**
