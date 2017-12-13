@@ -105,6 +105,11 @@ class FormAlterService
             $query->remove('destination');
         }
 
+        if ($fragment = \Drupal::request()->get('url-fragment')) {
+            $fragment = substr($fragment, 1, strlen($fragment) - 1);
+            $options['fragment'] = $fragment;
+        }
+
         /** @var CurrentRouteMatch $currentRouteMatch */
         $currentRouteMatch = \Drupal::service('current_route_match');
 
