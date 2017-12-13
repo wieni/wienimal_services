@@ -1,4 +1,9 @@
 services:
+    wienimal_services.wienicons:
+        class: Drupal\wienimal_services\Service\Wienicons
+        arguments:
+            - '@theme_handler'
+
     wienimal_services.title_service:
         class: Drupal\wienimal_services\Service\TitleService
         arguments:
@@ -27,7 +32,6 @@ services:
             - '@wienimal_services.content_source.node'
             - '@wienimal_services.content_source.taxonomy_term'
             - '@wienimal_services.content_source.eck'
-
 
     wienimal_services.content_source.node:
         class: Drupal\wienimal_services\Service\ContentSource\NodeContentSource

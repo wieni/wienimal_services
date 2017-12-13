@@ -36,7 +36,7 @@ class ContentTypeInfoService
     private $taxonomyTermContentSource;
 
     /**
-     * ContentTypeInfoService constructor.
+     * EditorToolbarContentCollector constructor.
      * @param CurrentRouteMatch $currentRouteMatch
      * @param EckEntityTypeBundleInfo $entityTypeBundleInfo
      * @param EntityTypeManager $entityTypeManager
