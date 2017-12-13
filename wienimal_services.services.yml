@@ -10,11 +10,6 @@ services:
     wienimal_services.maxlength_service:
         class: Drupal\wienimal_services\Service\MaxLengthService
 
-    wienimal_services.toolbar_service:
-        class: Drupal\wienimal_services\Service\ToolbarService
-        arguments:
-            - '@config.factory'
-
     wienimal_services.form_alter_service:
         class: Drupal\wienimal_services\Service\FormAlterService
         arguments:

@@ -11,7 +11,7 @@ class EckEntityContentSource extends AbstractContentSource {
     private $bundleInfo;
 
     /**
-     * EditorToolbarContentCollector constructor.
+     * EckEntityContentSource constructor.
      * @param EckEntityTypeBundleInfo $bundleInfo
      */
     public function __construct(EckEntityTypeBundleInfo $bundleInfo)
