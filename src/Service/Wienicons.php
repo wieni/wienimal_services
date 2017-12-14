@@ -8,6 +8,7 @@ class Wienicons
 {
     const CATEGORY_CONTENT = 'content';
     const CATEGORY_MENU = 'menu';
+    const CATEGORY_OPERATIONS = 'operations';
     const CATEGORY_EXTRA = 'extra';
 
     const SIZE_SMALL = 's';
@@ -64,7 +65,9 @@ class Wienicons
 
     /**
      * Check if an icon exists
-     * @return boolean
+     * @param $category
+     * @param $fileName
+     * @return bool
      */
     public function hasIcon($category, $fileName)
     {
@@ -94,9 +97,9 @@ class Wienicons
     public function getClassNames($size, $id, $modifiers = [])
     {
         return [
-            'icon',
-            "icon--$size",
-            "icon--$id",
-        ] + array_map(function ($modifier) { return "icon--$modifier"; }, $modifiers);
+                'icon',
+                "icon--$size",
+                "icon--$id",
+            ] + array_map(function ($modifier) { return "icon--$modifier"; }, $modifiers);
     }
 }
