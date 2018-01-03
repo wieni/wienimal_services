@@ -6,6 +6,9 @@ use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\inline_entity_form\ElementSubmit;
+use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeForm;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -138,6 +141,19 @@ class FormAlterService
      */
     public function addContentOverviewRedirect(&$form)
     {
+        if (\Drupal::hasService('wmsingles')) {
+            /** @var NodeForm $nodeForm */
+            $nodeForm = $form_state->getBuildInfo()['callback_object'];
+            /** @var Node $node */
+            $node = $nodeForm->getEntity();
+            /** @var NodeType $nodeType */
+            $nodeType = NodeType::load($node->getType());
+
+            if (\Drupal::service('wmsingles')->isSingle($nodeType)) {
+                return;
+            }
+        }
+
         $form['actions']['submit']['#submit'][] = [static::class, 'addContentOverviewRedirectSubmitHandler'];
     }
 
