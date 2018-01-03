@@ -138,8 +138,9 @@ class FormAlterService
 
     /**
      * @param $form
+     * @param FormStateInterface $form_state
      */
-    public function addContentOverviewRedirect(&$form)
+    public function addContentOverviewRedirect(&$form, FormStateInterface $form_state)
     {
         if (\Drupal::hasService('wmsingles')) {
             /** @var NodeForm $nodeForm */
