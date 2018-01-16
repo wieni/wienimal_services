@@ -148,7 +148,7 @@ class FormAlterService
             /** @var Node $node */
             $node = $nodeForm->getEntity();
             /** @var NodeType $nodeType */
-            $nodeType = NodeType::load($node->getType());
+            $nodeType = NodeType::load($node->bundle());
 
             if (\Drupal::service('wmsingles')->isSingle($nodeType)) {
                 return;
