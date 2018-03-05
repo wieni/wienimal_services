@@ -15,13 +15,6 @@ services:
     wienimal_services.maxlength_service:
         class: Drupal\wienimal_services\Service\MaxLengthService
 
-    wienimal_services.form_alter_service:
-        class: Drupal\wienimal_services\Service\FormAlterService
-        arguments:
-            - '@current_route_match'
-            - '@config.factory'
-            - '@request_stack'
-
     wienimal_services.content_type_info_service:
         class: Drupal\wienimal_services\Service\ContentTypeInfoService
         arguments:
