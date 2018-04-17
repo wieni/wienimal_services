@@ -2,7 +2,7 @@
 
 namespace Drupal\wienimal_services\Service;
 
-use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\eck\EckEntityTypeBundleInfo;
 use Drupal\eck\Entity\EckEntityType;
@@ -18,37 +18,27 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContentTypeInfoService
 {
-    /** @var CurrentRouteMatch $currentRouteMatch */
+    /** @var CurrentRouteMatch */
     protected $currentRouteMatch;
-    /** @var EckEntityTypeBundleInfo $entityTypeBundleInfo */
+    /** @var EckEntityTypeBundleInfo */
     protected $entityTypeBundleInfo;
-    /** @var EntityTypeManager $entityTypeManager */
+    /** @var EntityTypeManagerInterface */
     protected $entityTypeManager;
-    /** @var RequestStack $requestStack */
+    /** @var RequestStack */
     protected $requestStack;
     /** @var Request */
     protected $request;
-    /** @var EckEntityContentSource $eckContentSource */
+    /** @var EckEntityContentSource */
     private $eckContentSource;
-    /** @var NodeContentSource $nodeContentSource */
+    /** @var NodeContentSource */
     private $nodeContentSource;
-    /** @var TaxonomyTermContentSource $taxonomyTermContentSource */
+    /** @var TaxonomyTermContentSource */
     private $taxonomyTermContentSource;
 
-    /**
-     * EditorToolbarContentCollector constructor.
-     * @param CurrentRouteMatch $currentRouteMatch
-     * @param EckEntityTypeBundleInfo $entityTypeBundleInfo
-     * @param EntityTypeManager $entityTypeManager
-     * @param RequestStack $requestStack
-     * @param NodeContentSource $nodeContentSource
-     * @param TaxonomyTermContentSource $taxonomyTermContentSource
-     * @param EckEntityContentSource $eckContentSource
-     */
     public function __construct(
         CurrentRouteMatch $currentRouteMatch,
         EckEntityTypeBundleInfo $entityTypeBundleInfo,
-        EntityTypeManager $entityTypeManager,
+        EntityTypeManagerInterface $entityTypeManager,
         RequestStack $requestStack,
         NodeContentSource $nodeContentSource,
         TaxonomyTermContentSource $taxonomyTermContentSource,
@@ -153,9 +143,6 @@ class ContentTypeInfoService
         }
     }
 
-    /**
-     * @return array
-     */
     protected function getEckInfoFromRoute()
     {
         $result = [];
@@ -209,9 +196,6 @@ class ContentTypeInfoService
         return $result;
     }
 
-    /**
-     * @return array
-     */
     protected function getTaxonomyInfoFromRoute()
     {
         /** @var Vocabulary $vocabulary */
@@ -241,9 +225,6 @@ class ContentTypeInfoService
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getNodeInfoFromRoute()
     {
         /** @var NodeType $nodeType */
@@ -287,9 +268,6 @@ class ContentTypeInfoService
         return $result;
     }
 
-    /**
-     * @return array
-     */
     protected function getWmContentInfoFromRoute()
     {
         $result = [];

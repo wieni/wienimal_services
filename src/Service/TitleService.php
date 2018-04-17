@@ -4,7 +4,6 @@ namespace Drupal\wienimal_services\Service;
 
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\eck\EckEntityTypeBundleInfo;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -13,24 +12,17 @@ class TitleService
 {
     use StringTranslationTrait;
 
-    /** @var CurrentRouteMatch $currentRouteMatch */
+    /** @var CurrentRouteMatch */
     protected $currentRouteMatch;
-    /** @var EckEntityTypeBundleInfo $entityTypeBundleInfo */
+    /** @var EckEntityTypeBundleInfo */
     protected $entityTypeBundleInfo;
-    /** @var RequestStack $requestStack */
+    /** @var RequestStack */
     protected $requestStack;
-    /** @var Request $request */
+    /** @var Request */
     protected $request;
-    /** @var ContentTypeInfoService $contentTypeInfoService */
+    /** @var ContentTypeInfoService */
     protected $contentTypeInfoService;
 
-    /**
-     * WmContentDescriptiveTitles constructor.
-     * @param CurrentRouteMatch $currentRouteMatch
-     * @param EckEntityTypeBundleInfo $entityTypeBundleInfo
-     * @param RequestStack $requestStack
-     * @param ContentTypeInfoService $contentTypeInfoService
-     */
     public function __construct(
         CurrentRouteMatch $currentRouteMatch,
         EckEntityTypeBundleInfo $entityTypeBundleInfo,
@@ -106,45 +98,30 @@ class TitleService
         }
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeTypeEditTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
         return $this->t('Edit %nodeType content type', ['%nodeType' => $info['typeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeFieldUITitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
         return $this->t('Manage %nodeType fields', ['%nodeType' => $info['typeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeFormDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
         return $this->t('Manage %nodeType form display', ['%nodeType' => $info['typeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
         return $this->t('Manage %nodeType display', ['%nodeType' => $info['typeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeCreateTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
@@ -159,9 +136,6 @@ class TitleService
         return $this->t('Add %nodeType', ['%nodeType' => $info['typeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeEditTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
@@ -185,9 +159,6 @@ class TitleService
         ]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getNodeOverviewTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('node');
@@ -201,18 +172,12 @@ class TitleService
         return $this->t('Manage content');
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyTermCreateTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Add %vocabulary', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyTermEditTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
@@ -222,90 +187,60 @@ class TitleService
         ]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyTermFieldUITitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Manage %vocabulary fields', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyTermFormDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Manage %vocabulary form display', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyTermDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Manage %vocabulary display', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyVocabularyEditTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Edit %vocabulary vocabulary', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getTaxonomyVocabularyOverviewTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('taxonomy');
         return $this->t('Manage %vocabulary terms', ['%vocabulary' => $info['title']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getEckEntityCreateTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('eck');
         return $this->t('Add %entityType', ['%entityType' => $info['bundleTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getEckEntityOverviewTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('eck');
         return $this->t('Manage content for %entityType', ['%entityType' => $info['entityTypeTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getEckEntityFieldUITitle()
     {
         $info = $this->contentTypeInfoService->getInfo('eck');
         return $this->t('Manage %bundleTitle fields', ['%bundleTitle' => $info['bundleTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getEckEntityDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('eck');
         return $this->t('Manage %bundleTitle display', ['%bundleTitle' => $info['bundleTitle']]);
     }
 
-    /**
-     * @return TranslatableMarkup
-     */
     public function getEckEntityFormDisplayTitle()
     {
         $info = $this->contentTypeInfoService->getInfo('eck');
