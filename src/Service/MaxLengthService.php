@@ -4,7 +4,7 @@ namespace Drupal\wienimal_services\Service;
 
 class MaxLengthService
 {
-    public $label = '@remaining/<strong>@limit</strong>';
+    public $label = '@remaining / <strong>@limit</strong>';
 
     public function attach(array $element)
     {
