@@ -1,9 +1,4 @@
 services:
-    wienimal_services.wienicons:
-        class: Drupal\wienimal_services\Service\Wienicons
-        arguments:
-            - '@theme_handler'
-
     wienimal_services.title_service:
         class: Drupal\wienimal_services\Service\TitleService
         arguments:
