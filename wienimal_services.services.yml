@@ -1,25 +1,20 @@
 services:
-    wienimal_services.title_service:
-        class: Drupal\wienimal_services\Service\TitleService
+    wienimal_services.page_title:
+        class: Drupal\wienimal_services\Service\PageTitleService
         arguments:
-            - '@current_route_match'
-            - '@eck.entity_type.bundle.info'
-            - '@request_stack'
-            - '@wienimal_services.content_type_info_service'
+            - '@entity_type.manager'
+            - '@module_handler'
+
+    wienimal_services.title_resolver:
+        class: Drupal\wienimal_services\Service\TitleResolver
+        arguments:
+            - '@wienimal_services.title_resolver.inner'
+            - '@wienimal_services.page_title'
+        decorates: title_resolver
+        decoration_priority: 1
 
     wienimal_services.maxlength_service:
         class: Drupal\wienimal_services\Service\MaxLengthService
-
-    wienimal_services.content_type_info_service:
-        class: Drupal\wienimal_services\Service\ContentTypeInfoService
-        arguments:
-            - '@current_route_match'
-            - '@eck.entity_type.bundle.info'
-            - '@entity_type.manager'
-            - '@request_stack'
-            - '@wienimal_services.content_source.node'
-            - '@wienimal_services.content_source.taxonomy_term'
-            - '@wienimal_services.content_source.eck'
 
     wienimal_services.content_source.node:
         class: Drupal\wienimal_services\Service\ContentSource\NodeContentSource

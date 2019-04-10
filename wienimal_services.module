@@ -1,0 +1,11 @@
+<?php
+
+function wienimal_services_form_alter(array &$form)
+{
+    if (isset($form['#title'])) {
+        $request = \Drupal::request();
+        $service = \Drupal::service('wienimal_services.page_title');
+
+        $form['#title'] = $service->getTitle($request);
+    }
+}
