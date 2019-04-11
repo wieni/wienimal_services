@@ -12,14 +12,3 @@ services:
             - '@wienimal_services.page_title'
         decorates: title_resolver
         decoration_priority: 1
-
-    wienimal_services.content_source.node:
-        class: Drupal\wienimal_services\Service\ContentSource\NodeContentSource
-
-    wienimal_services.content_source.taxonomy_term:
-        class: Drupal\wienimal_services\Service\ContentSource\TaxonomyTermContentSource
-
-    wienimal_services.content_source.eck:
-        class: Drupal\wienimal_services\Service\ContentSource\EckEntityContentSource
-        arguments:
-            - '@eck.entity_type.bundle.info'
