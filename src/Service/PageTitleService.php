@@ -149,10 +149,11 @@ class PageTitleService
         /** @var EntityTypeInterface $entityType */
         $entityType = $this->entityTypeManager->getDefinition($entityTypeId);
 
-        if ($bundleKey = $entityType->getKey('bundle')) {
+        if (
+            ($bundleKey = $entityType->getKey('bundle'))
+            && ($bundle = $entity->get($bundleKey)->entity)
+        ) {
             /** @var ConfigEntityBundleBase $bundle */
-            $bundle = $entity->get($bundleKey)->entity;
-
             return $this->t('Delete %entity @bundle', [
                 '%entity' => $entity->label(),
                 '@bundle' => mb_strtolower($bundle->label()),
