@@ -246,6 +246,12 @@ class PageTitleService
         }
 
         $bundleEntityType = $definition->getBundleEntityType();
+
+        // Entity types without bundles (e.g. user) don't have a bundle entity type
+        if (!$bundleEntityType) {
+            return null;
+        }
+
         $bundleEntity = $this->entityTypeManager->getStorage($bundleEntityType)->load($bundle);
 
         if (!$bundleEntity instanceof EntityInterface) {
