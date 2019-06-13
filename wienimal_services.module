@@ -9,3 +9,9 @@ function wienimal_services_form_alter(array &$form)
         $form['#title'] = $service->getTitle($request);
     }
 }
+
+function wienimal_services_locale_translation_projects_alter(&$projects)
+{
+    $path = drupal_get_path('module', 'wienimal_services') . '/translations/%language.po';
+    $projects['wienimal_services']['info']['interface translation server pattern'] = $path;
+}

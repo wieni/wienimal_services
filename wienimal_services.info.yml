@@ -3,7 +3,6 @@ type: module
 description: Provides services for the Wienimal theme
 core: 8.x
 package: Wieni
-version: 3.0.3
 
 interface translation project: wienimal_services
-interface translation server pattern: https://github.com/wieni/%project/blob/%version/translations/%language.po
+interface translation server pattern: # @see wienimal_services.module
