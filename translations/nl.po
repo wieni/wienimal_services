@@ -1,0 +1,77 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/contrib/wienimal_services/wienimal_services.info.yml: n/a
+#  modules/contrib/wienimal_services/src/Service/PageTitleService.php: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2019-06-13 09:06+0000\n"
+"PO-Revision-Date: 2019-06-13 11:14+0200\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+"Last-Translator: \n"
+"Language: nl\n"
+
+#: modules/contrib/wienimal_services/wienimal_services.info.yml:0
+msgid "wienimal_services"
+msgstr ""
+
+#: modules/contrib/wienimal_services/wienimal_services.info.yml:0
+msgid "Provides services for the Wienimal theme"
+msgstr ""
+
+#: modules/contrib/wienimal_services/wienimal_services.info.yml:0
+msgid "Wieni"
+msgstr ""
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:95
+msgid "Manage %bundle form display"
+msgstr "Beheer %bundle formulierweergave"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:105
+msgid "Manage %bundle display"
+msgstr "Beheer %bundle weergave"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:115
+msgid "Manage %bundle fields"
+msgstr "Beheer %bundle velden"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:135
+msgid "Create @bundle"
+msgstr "Maak een @bundle"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:140
+msgid "Create @entityType"
+msgstr "Maak een @bundle"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:156
+msgid "Delete %entity @bundle"
+msgstr "Verwijder %entity @bundle"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:162
+msgid "Delete %entity @entityType"
+msgstr "Verwijder %entity @entityType"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:179
+msgid "Edit %entity @bundle"
+msgstr "Bewerk %entity @bundle"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:185
+msgid "Edit %entity @entityType"
+msgstr "Bewerk %entity @entityType"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:209
+msgid "Manage @bundle @entityType"
+msgstr "Beheer @bundle @entityType"
+
+#: modules/contrib/wienimal_services/src/Service/PageTitleService.php:215
+msgid "Manage @entityType"
+msgstr "Beheer @entityType"
