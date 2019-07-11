@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -75,6 +76,12 @@ class PageTitleService
             }
         }
 
+        if ($this->moduleHandler->moduleExists('content_translation')) {
+            if (preg_match('#entity\.(?<entityType>.+)\.content_translation_add#', $routeName, $matches)) {
+                return $this->getEntityTranslationCreateTitle($matches['entityType'], $request);
+            }
+        }
+
         if (preg_match('#entity\.(?<entityType>.+)\.add_form#', $routeName, $matches)) {
             return $this->getEntityCreateTitle($matches['entityType'], $request);
         }
@@ -138,6 +145,33 @@ class PageTitleService
         }
 
         return $this->t('Create @entityType', [
+            '@entityType' => $entityType->getSingularLabel(),
+        ]);
+    }
+
+    protected function getEntityTranslationCreateTitle(string $entityTypeId, Request $request, string $bundle = null): MarkupInterface
+    {
+        /** @var EntityInterface $entity */
+        $entity = $request->attributes->get($entityTypeId);
+        /** @var LanguageInterface $language */
+        $language = $request->attributes->get('target');
+        /** @var EntityTypeInterface $entityType */
+        $entityType = $entity->getEntityType();
+
+        if ($bundleKey = $entityType->getKey('bundle')) {
+            /** @var ConfigEntityBundleBase $bundle */
+            $bundle = $entity->get($bundleKey)->entity;
+
+            return $this->t('Add @language translation for %entity @bundle', [
+                '@language' => $language->getName(),
+                '%entity' => $entity->label(),
+                '@bundle' => mb_strtolower($bundle->label()),
+            ]);
+        }
+
+        return $this->t('Add @language translation for %entity @entityType', [
+            '@language' => $entity->language()->getName(),
+            '%entity' => $entity->label(),
             '@entityType' => $entityType->getSingularLabel(),
         ]);
     }
