@@ -127,8 +127,12 @@ class PageTitleService
         ]);
     }
 
-    protected function getEntityCreateTitle(string $entityTypeId, Request $request, string $bundle = null): MarkupInterface
+    protected function getEntityCreateTitle(string $entityTypeId, Request $request, string $bundle = null): ?MarkupInterface
     {
+        if (!$this->entityTypeManager->hasDefinition($entityTypeId)) {
+            return null;
+        }
+
         $entityType = $this->entityTypeManager->getDefinition($entityTypeId);
 
         if ($bundleEntityType = $entityType->getBundleEntityType()) {
@@ -176,8 +180,15 @@ class PageTitleService
         ]);
     }
 
-    protected function getEntityDeleteTitle(string $entityTypeId, Request $request): MarkupInterface
+    protected function getEntityDeleteTitle(string $entityTypeId, Request $request): ?MarkupInterface
     {
+        if (
+            !$this->entityTypeManager->hasDefinition($entityTypeId)
+            || !$request->attributes->has($entityTypeId)
+        ) {
+            return null;
+        }
+
         /** @var EntityInterface $entityType */
         $entity = $request->attributes->get($entityTypeId);
         /** @var EntityTypeInterface $entityType */
@@ -200,8 +211,15 @@ class PageTitleService
         ]);
     }
 
-    public function getEntityEditTitle(string $entityTypeId, Request $request): MarkupInterface
+    public function getEntityEditTitle(string $entityTypeId, Request $request): ?MarkupInterface
     {
+        if (
+            !$this->entityTypeManager->hasDefinition($entityTypeId)
+            || !$request->attributes->has($entityTypeId)
+        ) {
+            return null;
+        }
+
         /** @var EntityInterface $entity */
         $entity = $request->attributes->get($entityTypeId);
         /** @var EntityTypeInterface $entityType */
