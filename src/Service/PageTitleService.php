@@ -82,6 +82,28 @@ class PageTitleService
             }
         }
 
+        if ($this->moduleHandler->moduleExists('menu_ui')) {
+            if ($routeName === 'entity.menu.add_link_form') {
+                $menu = $request->attributes->get('menu');
+
+                return $this->t('Add new menu link to %menuLabel', [
+                    '%menuLabel' => $menu->label(),
+                ]);
+            }
+
+            if ($routeName === 'entity.menu_link_content.canonical') {
+                $menuLink = $request->attributes->get('menu_link_content');
+                $menu = $this->entityTypeManager
+                    ->getStorage('menu')
+                    ->load($menuLink->getMenuName());
+
+                return $this->t('Edit %entity on menu %menuLabel', [
+                    '%entity' => $menuLink->label(),
+                    '%menuLabel' => $menu->label(),
+                ]);
+            }
+        }
+
         if (preg_match('#entity\.(?<entityType>.+)\.add_form#', $routeName, $matches)) {
             return $this->getEntityCreateTitle($matches['entityType'], $request);
         }
