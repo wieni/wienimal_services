@@ -179,26 +179,20 @@ class PageTitleService
     {
         /** @var EntityInterface $entity */
         $entity = $request->attributes->get($entityTypeId);
-        /** @var LanguageInterface $language */
-        $language = $request->attributes->get('target');
         /** @var EntityTypeInterface $entityType */
         $entityType = $entity->getEntityType();
 
-        if ($bundleKey = $entityType->getKey('bundle')) {
+        $type = $bundle ?: $entityType->getSingularLabel();
+        if (empty($bundle) && $bundleKey = $entityType->getKey('bundle')) {
             /** @var ConfigEntityBundleBase $bundle */
             $bundle = $entity->get($bundleKey)->entity;
-
-            return $this->t('Add @language translation for %entity @bundle', [
-                '@language' => $language->getName(),
-                '%entity' => $entity->label(),
-                '@bundle' => mb_strtolower($bundle->label()),
-            ]);
+            $type = mb_strtolower($bundle->label());
         }
 
-        return $this->t('Add @language translation for %entity @entityType', [
+        return $this->t('Add @language translation for %entity @type', [
             '@language' => $entity->language()->getName(),
             '%entity' => $entity->label(),
-            '@entityType' => $entityType->getSingularLabel(),
+            '@type' => $type,
         ]);
     }
 
