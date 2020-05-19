@@ -72,6 +72,9 @@ class PageTitleService
             }
 
             if (preg_match('#eck\.entity\.(.+)\.list#', $routeName, $matches)) {
+                if (empty($request->attributes->get('entity_type'))) {
+                    return null;
+                }
                 return $this->getEntityOverviewTitle($request->attributes->get('entity_type'), $request);
             }
         }
