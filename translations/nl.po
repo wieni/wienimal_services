@@ -50,7 +50,7 @@ msgstr "Maak een @bundle"
 
 #: modules/contrib/wienimal_services/src/Service/PageTitleService.php:140
 msgid "Create @entityType"
-msgstr "Maak een @bundle"
+msgstr "Maak een @entityType"
 
 #: modules/contrib/wienimal_services/src/Service/PageTitleService.php:156
 msgid "Delete %entity @bundle"
