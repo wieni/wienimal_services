@@ -248,6 +248,12 @@ class PageTitleService
             /** @var ConfigEntityBundleBase $bundle */
             $bundle = $entity->get($bundleKey)->entity;
 
+            if ($bundle->getThirdPartySetting('wmsingles', 'isSingle', false)) {
+                return $this->t('Edit %bundle', [
+                    '%bundle' => mb_strtolower($bundle->label()),
+                ]);
+            }
+
             return $this->t('Edit %entity @bundle', [
                 '%entity' => $entity->label(),
                 '@bundle' => mb_strtolower($bundle->label()),
