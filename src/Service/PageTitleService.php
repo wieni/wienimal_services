@@ -278,7 +278,10 @@ class PageTitleService
             $bundleLabel = $this->getBundleLabel($entityTypeId, $request->query->get($bundleKey));
         }
 
-        if ($bundle = $request->attributes->get($entityType->getBundleEntityType())) {
+        if (
+            $entityType->getBundleEntityType() 
+            && $bundle = $request->attributes->get($entityType->getBundleEntityType())
+        ) {
             /** @var ConfigEntityBundleBase $bundle */
             $bundleLabel = $bundle->label();
         }
