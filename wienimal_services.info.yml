@@ -2,7 +2,7 @@ name: wienimal_services
 type: module
 description: Provides services for the Wienimal theme
 package: Wieni
-core_version_requirement: ^9.3 || ^10
+core_version_requirement: ^9.3 || ^10 || ^11
 
 interface translation project: wienimal_services
 interface translation server pattern: # @see wienimal_services.module
