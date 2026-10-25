@@ -152,7 +152,7 @@ class PageTitleService
         ]);
     }
 
-    protected function getEntityCreateTitle(string $entityTypeId, Request $request, string $bundle = null): ?MarkupInterface
+    protected function getEntityCreateTitle(string $entityTypeId, Request $request, ?string $bundle = null): ?MarkupInterface
     {
         if (!$this->entityTypeManager->hasDefinition($entityTypeId)) {
             return null;
@@ -178,7 +178,7 @@ class PageTitleService
         ]);
     }
 
-    protected function getEntityTranslationCreateTitle(string $entityTypeId, Request $request, string $bundle = null): MarkupInterface
+    protected function getEntityTranslationCreateTitle(string $entityTypeId, Request $request, ?string $bundle = null): MarkupInterface
     {
         /** @var EntityInterface $entity */
         $entity = $request->attributes->get($entityTypeId);
